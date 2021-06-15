@@ -139,4 +139,45 @@ return bb;
 ```
 
 ![Image3](https://cloud.paov.ru/index.php/s/cj6yYgAJ6MykKzP/preview)
+## Задание 4
+В этом задании выводится структура вершины с тремя координатами
 
+Класс Python:
+```
+class point():
+    def __init__(self, x, y,z):
+        self.x = x
+        self.y = y
+        self.z = z
+```
+Структура C++:
+```
+struct point{
+    long x;
+    long y;
+    long z;
+};
+```
+
+
+Код C++:
+```
+point * zad4(point * p,PyObject *dict)
+{
+PyObject *python_class, *argums, *object, *attr;
+python_class = PyDict_GetItemString(dict, "point");
+argums = PyTuple_Pack(3,
+PyLong_FromLong(p->x),
+PyLong_FromLong(p->y),
+PyLong_FromLong(p->z)
+);
+
+object = PyObject_CallObject(python_class,argums);
+point * pp=get_point(PyLong_AsLong(PyObject_GetAttrString(object, "x")),
+PyLong_AsLong(PyObject_GetAttrString(object, "y")),
+PyLong_AsLong(PyObject_GetAttrString(object, "z")));
+return pp;
+}
+```
+
+![Image4](https://cloud.paov.ru/index.php/s/LFnk6WZBKfYJFTt/preview)
