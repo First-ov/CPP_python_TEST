@@ -17,7 +17,7 @@ def zad21(a):
 
 def zad22(a):
     s = str(a)
-    ss=datetime.strptime(s, "%m/%d/%YT%H:%M:%S")
+    ss=datetime.datetime.strptime(s, "%m/%d/%YT%H:%M:%S")
     return ss
 
 

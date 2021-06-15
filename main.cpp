@@ -37,7 +37,7 @@ a = PyFloat_FromDouble(aa);
 argums = PyTuple_Pack(1,a);
 object = PyObject_CallObject(python_class, argums);
 Py_DECREF(python_class);
-double o=PyLong_AsLong(object);
+double o=PyFloat_AsDouble(object);
 return o;
 }
 char* zad21(char* aa,PyObject *dict)
@@ -124,15 +124,15 @@ PyObject *my_module_name, *module, *dict;
 my_module_name = PyUnicode_FromString((char*)"lib");
 module = PyImport_Import(my_module_name);
 dict = PyModule_GetDict(module);
-int inp;
+int inp,inp2;
 do {
 std::cout<<"Enter number of problem or 0 to exit:\n";
 std::cin>>inp;
 if (inp==1)
 {
 std::cout<<"Enter 1 for integer, 2 for double or any other to exit:\n";
-std::cin>>inp;
-if (inp==1)
+std::cin>>inp2;
+if (inp2==1)
 {
 long aa;
 std::cout<<"Enter iteger:\n";
@@ -140,12 +140,12 @@ std::cin>>aa;
 std::cout<<'\n'<<zad11(aa,dict)<<'\n';
 
 }
-if (inp==2)
+if (inp2==2)
 {
 double aa;
 std::cout<<"Enter double:\n";
 std::cin>>aa;
-std::cout<<'\n'<<zad12(aa,dict)<<'\n';
+std::cout<<zad12(aa,dict)<<'\n';
 }
 }
 if (inp==2)
@@ -168,7 +168,8 @@ time_t t;
 t=zad22(aa, dict);
 char mbstr[100];
 strftime(mbstr, sizeof(mbstr), "%D %R", localtime(&t));
-std::cout<<mbstr<<'\n';}}
+std::cout<<mbstr<<'\n';}
+}
 if (inp==3)
 {
 const int x=3;
@@ -200,7 +201,7 @@ std::cout<<"Enter x y z:\n";
 std::cin>>x>>y>>z;
 point * p=get_point(x,y,z);
 point * pp=zad4(p,dict);
-std::cout<<"x:"<<pp->x<<"y:"<<pp->y<<"z:"<<pp->z<<'\n';
+std::cout<<"x:"<<pp->x<<"y:"<<pp->y<<"z:"<<pp->z;
 }
 }while (inp!=0);
 Py_Finalize();
